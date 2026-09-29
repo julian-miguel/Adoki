@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Adoki.app/Adoki.app.csproj" />
+  <Project Path="Adoki.logic/Adoki.logic.csproj" />
+</Solution>
