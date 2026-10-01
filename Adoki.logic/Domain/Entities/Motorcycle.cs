@@ -5,5 +5,26 @@ namespace Adoki.logic.Domain.Entities;
 
 class Motorcycle
 {
-    
+    public Registration Registration { get; init; }
+    public TypeMotorcycle TypeMotorcycle { get; init; }
+    public History History { get; init; }
+
+    public Motorcycle() : this(new(), new("", "")) { }
+    public Motorcycle(Registration registration, TypeMotorcycle typeMotorcycle)
+    {
+        Registration = registration;
+        TypeMotorcycle = typeMotorcycle;
+        History = new([]);
+    }
+    public Motorcycle(Registration registration, TypeMotorcycle typeMotorcycle, History history)
+    {
+        Registration = registration;
+        TypeMotorcycle = typeMotorcycle;
+        History = history;
+    }
+    public override string ToString()
+    {
+        var text = $"Id: {Registration}\nMarca: {TypeMotorcycle.Marca}\nModelo: {TypeMotorcycle.Modelo}\n";
+        return text;
+    }
 }
