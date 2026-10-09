@@ -6,7 +6,7 @@ record Read(DateTime Date, Kilometer Km)
 {
     public readonly DateTime Date = Date.Date;
     public Kilometer Kilometers { get; set; } = Km;
-    public List<int> Maintenance { get; set; } = [];
+    public List<Maintenance> Maintenances { get; set; } = [];
 
     public static (int, Kilometer) operator -(Read a, Read b)
     {
@@ -14,5 +14,5 @@ record Read(DateTime Date, Kilometer Km)
         Kilometer diferenciaKm = a.Kilometers - b.Kilometers;
         return (diferenciaDias, diferenciaKm);
     }
-    public override string ToString() => $"Date {DateOnly.FromDateTime(Date)}\nOdometry {Kilometers}\nMantenimiento(s) {Maintenance}";
+    public override string ToString() => $"Date {DateOnly.FromDateTime(Date)}\nOdometry {Kilometers}\nMantenimiento(s) {Maintenances}";
 }
