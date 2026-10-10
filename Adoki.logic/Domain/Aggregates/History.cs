@@ -20,13 +20,13 @@ class History(List<Read> Items)
         else
             throw new ExisteReadException("Lectura ya añadida anteriormente, solo actualizable.");
     }
-    public void UpdateRead(List<int> operation)
+    public void UpdateRead(List<Maintenance> operation)
     {
         int last;
         if (Items.Count >= 1)
         {
             last = Items.Count - 1;
-            Items[last].Maintenance.AddRange(operation);
+            Items[last].Maintenances.AddRange(operation);
         }
     }
     public void UpdateRead(Kilometer kilometer)
@@ -38,13 +38,13 @@ class History(List<Read> Items)
             Items[last].Kilometers += kilometer;
         }
     }
-    public void UpdateRead(List<int> operation, Kilometer kilometer)
+    public void UpdateRead(List<Maintenance> operation, Kilometer kilometer)
     {
         int last;
         if (Items.Count >= 1)
         {
             last = Items.Count() - 1;
-            Items[last].Maintenance.AddRange(operation);
+            Items[last].Maintenances.AddRange(operation);
             Items[last].Kilometers += kilometer;
         }
 
