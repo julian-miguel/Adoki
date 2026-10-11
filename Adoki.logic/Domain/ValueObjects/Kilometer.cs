@@ -29,5 +29,5 @@ public class Kilometer(uint Value)
 
     public override string ToString() => $"{Value:D5} km";
 
-    public string ToString(bool _) => $"{Value} km";
+    //public string ToString(bool _) => $"{Value} km";
 }
