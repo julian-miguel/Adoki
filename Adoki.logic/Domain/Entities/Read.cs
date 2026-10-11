@@ -22,7 +22,7 @@ public class Read
     public Kilometer Odometer { get; set; }
     public Maintenance Operation { get; set; }
 
-    public static (int, Kilometer) operator -(Read a, Read b)
+    public static (int Days, Kilometer Kilometer) operator -(Read a, Read b)
     {
         int diferenciaDias = (a.Date - b.Date).Days;
         Kilometer diferenciaKm = a.Odometer - b.Odometer;
