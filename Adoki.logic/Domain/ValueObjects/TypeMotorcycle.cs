@@ -1,6 +1,6 @@
 namespace Adoki.logic.Domain.ValueObjects;
 
-record TypeMotorcycle(string Marca, string Modelo)
+public class TypeMotorcycle(string Marca, string Modelo)
 {
     public string Marca
     {

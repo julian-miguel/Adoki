@@ -2,7 +2,7 @@ using Adoki.logic.Domain.Entities;
 using Adoki.logic.Domain.ValueObjects;
 namespace Adoki.logic.Domain.Aggregates;
 
-class History(List<Read> Items)
+public class History(List<Read> Items)
 {
     public List<Read> Items { get; init; } = Items.Count > 0
         ? (List<Read>)(

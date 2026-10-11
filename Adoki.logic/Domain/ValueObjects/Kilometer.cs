@@ -1,6 +1,6 @@
 namespace Adoki.logic.Domain.ValueObjects;
 
-public readonly record struct Kilometer(uint Value)
+public class Kilometer(uint Value)
 {
     public uint Value { get; init; } = Value % MAX_ODOMETRY;
     private static readonly uint MAX_ODOMETRY = 99999;

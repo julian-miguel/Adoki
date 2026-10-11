@@ -1,6 +1,6 @@
 namespace Adoki.logic.Domain.ValueObjects;
 
-public readonly record struct Registration(string Number = "")
+public class Registration(string Number = "")
 {
     public string Number
     {

@@ -2,9 +2,9 @@ namespace Adoki.logic.Domain.Entities;
 
 using Adoki.logic.Domain.ValueObjects;
 
-record Read(DateTime Date, Kilometer Km)
+public class Read(DateTime Date, Kilometer Km)
 {
-    public readonly DateTime Date = Date.Date;
+    public DateTime Date { get; set; } = Date.Date;
     public Kilometer Kilometers { get; set; } = Km;
     public List<Maintenance> Maintenances { get; set; } = [];
 

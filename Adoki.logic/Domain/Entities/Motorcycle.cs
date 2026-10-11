@@ -3,7 +3,7 @@ using Adoki.logic.Domain.ValueObjects;
 
 namespace Adoki.logic.Domain.Entities;
 
-class Motorcycle
+public class Motorcycle
 {
     public Registration Registration { get; init; }
     public TypeMotorcycle TypeMotorcycle { get; init; }
