@@ -1,12 +1,13 @@
 namespace Adoki.logic.Domain.Entities;
-
 using Adoki.logic.Domain.ValueObjects;
+using Adoki.logic.Domain.Enums;
+
 
 public class Read(DateTime Date, Kilometer Km)
 {
     public DateTime Date { get; set; } = Date.Date;
     public Kilometer Kilometers { get; set; } = Km;
-    public List<Maintenance> Maintenances { get; set; } = [];
+    public Maintenance Maintenances { get; set; } = Maintenance.NONE;
 
     public static (int, Kilometer) operator -(Read a, Read b)
     {

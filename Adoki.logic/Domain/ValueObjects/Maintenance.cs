@@ -1,5 +1,5 @@
 namespace Adoki.logic.Domain.ValueObjects;
-
+/*
 public class Maintenance
 {
     public int? Id { get; set; }
@@ -13,3 +13,4 @@ public class Maintenance
 
     public Maintenance(){}
 }
+*/

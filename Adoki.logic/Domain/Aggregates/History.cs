@@ -1,5 +1,7 @@
 using Adoki.logic.Domain.Entities;
 using Adoki.logic.Domain.ValueObjects;
+using Adoki.logic.Domain.Enums;
+
 namespace Adoki.logic.Domain.Aggregates;
 
 public class History(List<Read> Items)
@@ -20,13 +22,13 @@ public class History(List<Read> Items)
         else
             throw new ExisteReadException("Lectura ya añadida anteriormente, solo actualizable.");
     }
-    public void UpdateRead(List<Maintenance> operation)
+    public void UpdateRead(Maintenance operation)
     {
         int last;
         if (Items.Count >= 1)
         {
             last = Items.Count - 1;
-            Items[last].Maintenances.AddRange(operation);
+            Items[last].Maintenances |= operation;
         }
     }
     public void UpdateRead(Kilometer kilometer)
@@ -38,16 +40,10 @@ public class History(List<Read> Items)
             Items[last].Kilometers += kilometer;
         }
     }
-    public void UpdateRead(List<Maintenance> operation, Kilometer kilometer)
+    public void UpdateRead(Maintenance operation, Kilometer kilometer)
     {
-        int last;
-        if (Items.Count >= 1)
-        {
-            last = Items.Count() - 1;
-            Items[last].Maintenances.AddRange(operation);
-            Items[last].Kilometers += kilometer;
-        }
-
+        UpdateRead(kilometer);
+        UpdateRead(operation);
     }
 }
 
