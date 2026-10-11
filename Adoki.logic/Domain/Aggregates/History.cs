@@ -4,14 +4,21 @@ using Adoki.logic.Domain.Entities;
 
 namespace Adoki.logic.Domain.Aggregates;
 
-public class History(List<Read> Items)
+public class History
 {
-    public List<Read> Items { get; init; } = Items.Count > 0
+    public List<Read> Items { get; init; }
+
+    public History()=> Items = [];
+    
+    public History(List<Read> Items)
+    {
+        this.Items = Items.Count > 0
         ? (List<Read>)(
             from item in Items
             orderby item.Date
             select item
             ) : Items;
+    }
 
     public void Append(Read read)
     {

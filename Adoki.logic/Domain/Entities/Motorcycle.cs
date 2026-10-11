@@ -8,12 +8,12 @@ public class Motorcycle
     public Registration Registration { get; init; }
     public TypeMotorcycle TypeMotorcycle { get; init; }
     public History History { get; init; }
-    
+
     public Motorcycle(Registration registration, TypeMotorcycle typeMotorcycle)
     {
         Registration = registration;
         TypeMotorcycle = typeMotorcycle;
-        History = new([]);
+        History = new();
     }
     public Motorcycle(Registration registration, TypeMotorcycle typeMotorcycle, History history)
     {
