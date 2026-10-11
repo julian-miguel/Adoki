@@ -8,7 +8,7 @@ public class Motorcycle
     public Registration Registration { get; init; }
     public TypeMotorcycle TypeMotorcycle { get; init; }
     public History History { get; init; }
-
+    
     public Motorcycle(Registration registration, TypeMotorcycle typeMotorcycle)
     {
         Registration = registration;
@@ -21,9 +21,7 @@ public class Motorcycle
         TypeMotorcycle = typeMotorcycle;
         History = history;
     }
-    public override string ToString()
-    {
-        var text = $"Registro: {Registration}\nMarca: {TypeMotorcycle.Marca}\nModelo: {TypeMotorcycle.Modelo}\n";
-        return text;
-    }
+    public override string ToString()=> $"Registro: {
+        Registration}\nMarca: {TypeMotorcycle.Marca}\nModelo: {
+            TypeMotorcycle.Modelo}\n";
 }

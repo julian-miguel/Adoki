@@ -15,5 +15,7 @@ public class Read(DateTime Date, Kilometer Km)
         Kilometer diferenciaKm = a.Odometer - b.Odometer;
         return (diferenciaDias, diferenciaKm);
     }
-    public override string ToString() => $"Date {DateOnly.FromDateTime(Date)}\nOdometer {Odometer}\nOperations {Operation}";
+    public override string ToString() => $"Date {
+        DateOnly.FromDateTime(Date)}\nOdometer {
+            Odometer}\nOperations {Operation}";
 }
