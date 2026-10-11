@@ -9,7 +9,7 @@ public class History
     public List<Read> Items { get; init; }
 
     public History()=> Items = [];
-    
+    /*
     public History(List<Read> Items)
     {
         this.Items = Items.Count > 0
@@ -18,7 +18,7 @@ public class History
             orderby item.Date
             select item
             ) : Items;
-    }
+    }*/
 
     public void Append(Read read)
     {
