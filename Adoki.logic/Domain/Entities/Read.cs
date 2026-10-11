@@ -3,11 +3,24 @@ using Adoki.logic.Domain.ValueObjects;
 using Adoki.logic.Domain.Enums;
 
 
-public class Read(DateTime Date, Kilometer Km)
+public class Read
 {
-    public DateTime Date { get; set; } = Date.Date;
-    public Kilometer Odometer { get; set; } = Km;
-    public Maintenance Operation { get; set; } = Maintenance.NONE;
+    public Read()
+    {
+        Date = DateTime.Now.Date;
+        Odometer = new(0);
+        Operation = Maintenance.NONE;
+    }
+    public Read(DateTime Date, Kilometer Km)
+    {
+        this.Date = Date.Date;
+        Odometer = Km;
+        Operation = Maintenance.NONE;
+    }
+
+    public DateTime Date { get; set; }
+    public Kilometer Odometer { get; set; }
+    public Maintenance Operation { get; set; }
 
     public static (int, Kilometer) operator -(Read a, Read b)
     {
