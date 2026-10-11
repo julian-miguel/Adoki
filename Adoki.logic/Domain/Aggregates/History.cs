@@ -28,7 +28,7 @@ public class History(List<Read> Items)
         if (Items.Count >= 1)
         {
             last = Items.Count - 1;
-            Items[last].Maintenances |= operation;
+            Items[last].Operation |= operation;
         }
     }
     public void UpdateRead(Kilometer kilometer)
@@ -37,7 +37,7 @@ public class History(List<Read> Items)
         if (Items.Count >= 1)
         {
             last = Items.Count() - 1;
-            Items[last].Kilometers += kilometer;
+            Items[last].Odometer += kilometer;
         }
     }
     public void UpdateRead(Maintenance operation, Kilometer kilometer)

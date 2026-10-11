@@ -6,14 +6,14 @@ using Adoki.logic.Domain.Enums;
 public class Read(DateTime Date, Kilometer Km)
 {
     public DateTime Date { get; set; } = Date.Date;
-    public Kilometer Kilometers { get; set; } = Km;
-    public Maintenance Maintenances { get; set; } = Maintenance.NONE;
+    public Kilometer Odometer { get; set; } = Km;
+    public Maintenance Operation { get; set; } = Maintenance.NONE;
 
     public static (int, Kilometer) operator -(Read a, Read b)
     {
         int diferenciaDias = (a.Date - b.Date).Days;
-        Kilometer diferenciaKm = a.Kilometers - b.Kilometers;
+        Kilometer diferenciaKm = a.Odometer - b.Odometer;
         return (diferenciaDias, diferenciaKm);
     }
-    public override string ToString() => $"Date {DateOnly.FromDateTime(Date)}\nOdometry {Kilometers}\nMantenimiento(s) {Maintenances}";
+    public override string ToString() => $"Date {DateOnly.FromDateTime(Date)}\nOdometer {Odometer}\nOperations {Operation}";
 }
