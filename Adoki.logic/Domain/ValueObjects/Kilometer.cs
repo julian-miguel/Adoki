@@ -1,9 +1,12 @@
 namespace Adoki.logic.Domain.ValueObjects;
 
-public class Kilometer(uint Value)
+public class Kilometer
 {
-    public uint Value { get; init; } = Value % MAX_ODOMETRY;
+    public uint Value { get; init; }
     private static readonly uint MAX_ODOMETRY = 99999;
+
+    public Kilometer() => Value = 0;
+    public Kilometer(uint Value) => this.Value = Value % MAX_ODOMETRY;
 
     // Operadores Aritméticos
     public static Kilometer operator +(Kilometer a, Kilometer b)
