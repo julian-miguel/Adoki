@@ -1,6 +1,6 @@
 using Adoki.logic.Domain.Entities;
 using Adoki.logic.Domain.ValueObjects;
-//using Adoki.logic.Domain.Enums;
+using Adoki.logic.Domain.Enums;
 
 namespace Adoki.logic.Domain.Aggregates;
 
@@ -10,6 +10,9 @@ public class History
     public (int Days, Kilometer Km) LastDifference => Items.Count > 1 ?
                             Items.Last() - Items[^2] :
                                 throw new StackOverflowException("No Hay mas de una lectura.");
+    public (int Days, Kilometer Km) LastOperationDifference => Items.Count > 1 ?
+                             Items.Last() - Items.Last(rd => rd.Operation != Maintenance.NONE) :
+                                throw new StackOverflowException("No hay mas de una lectura.");
 
     public History() => Items = [];
 
