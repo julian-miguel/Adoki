@@ -7,22 +7,11 @@ namespace Adoki.logic.Domain.Aggregates;
 public class History
 {
     public List<Read> Items { get; init; }
-    public (int Days, Kilometer Kilometer) LastDifference => Items.Count > 1 ? 
-                            Items.Last() - Items[^2] : 
+    public (int Days, Kilometer Km) LastDifference => Items.Count > 1 ?
+                            Items.Last() - Items[^2] :
                                 throw new StackOverflowException("No Hay mas de una lectura.");
 
-
     public History() => Items = [];
-    /*
-    public History(List<Read> Items)
-    {
-        this.Items = Items.Count > 0
-        ? (List<Read>)(
-            from item in Items
-            orderby item.Date
-            select item
-            ) : Items;
-    }*/
 
     public void Append(Read read)
     {
@@ -33,31 +22,23 @@ public class History
         else
             throw new ExisteReadException("Lectura ya añadida anteriormente, solo actualizable.");
     }
-    /*
-    public void UpdateRead(Maintenance operation)
+
+    public (int Days, Kilometer Km) DifferenceSince(DateTime date)
     {
-        int last;
-        if (Items.Count >= 1)
-        {
-            last = Items.Count - 1;
-            Items[last].Operation |= operation;
-        }
+        if (Items.Count > 1)
+            throw new StackOverflowException("No Hay mas de una lectura.");
+
+        var last = Items.Last();
+        Read? read = Items.FirstOrDefault(rd => rd.Date == date);
+
+        if (read != null)
+            return last - read;
+
+        var readAtDate = Items.Where(rd => rd.Date > date).OrderBy(rd => rd.Date).FirstOrDefault();
+        if (readAtDate != null)
+            return last - readAtDate;
+        throw new NullReferenceException();
     }
-    public void UpdateRead(Kilometer kilometer)
-    {
-        int last;
-        if (Items.Count >= 1)
-        {
-            last = Items.Count() - 1;
-            Items[last].Odometer += kilometer;
-        }
-    }
-    public void UpdateRead(Maintenance operation, Kilometer kilometer)
-    {
-        UpdateRead(kilometer);
-        UpdateRead(operation);
-    }
-    */
 }
 
 public class ExisteReadException : Exception
@@ -76,3 +57,40 @@ public class ExisteReadException : Exception
     {
     }
 }
+
+
+/*
+    public History(List<Read> Items)
+    {
+        this.Items = Items.Count > 0
+        ? (List<Read>)(
+            from item in Items
+            orderby item.Date
+            select item
+            ) : Items;
+    }*/
+/*
+public void UpdateRead(Maintenance operation)
+{
+    int last;
+    if (Items.Count >= 1)
+    {
+        last = Items.Count - 1;
+        Items[last].Operation |= operation;
+    }
+}
+public void UpdateRead(Kilometer kilometer)
+{
+    int last;
+    if (Items.Count >= 1)
+    {
+        last = Items.Count() - 1;
+        Items[last].Odometer += kilometer;
+    }
+}
+public void UpdateRead(Maintenance operation, Kilometer kilometer)
+{
+    UpdateRead(kilometer);
+    UpdateRead(operation);
+}
+*/
