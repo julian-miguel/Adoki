@@ -43,6 +43,9 @@ public class History
         throw new NullReferenceException();
     }
 
+    public Read? FindLastReadWithOperation(Maintenance operation) =>
+             Items.FindLast(rd => rd.Operation.HasFlag(operation));
+
     public List<Read> FindReadWithOperation(Maintenance operation, int range = 2)
     {
         var listRead = Items.FindAll(rd => rd.Operation.HasFlag(operation));
