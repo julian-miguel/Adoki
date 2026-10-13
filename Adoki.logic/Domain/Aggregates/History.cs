@@ -42,6 +42,15 @@ public class History
             return last - readAtDate;
         throw new NullReferenceException();
     }
+
+    public List<Read> FindReadWithOperation(Maintenance operation, int range = 2)
+    {
+        var listRead = Items.FindAll(rd => rd.Operation.HasFlag(operation));
+        if (listRead.Count == 0)
+            return listRead;
+
+        return listRead.GetRange(listRead.Count - (range + 1), range);
+    }
 }
 
 public class ExisteReadException : Exception
