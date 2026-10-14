@@ -46,13 +46,13 @@ public class History
     public Read? FindLastReadWithOperation(Maintenance operation) =>
              Items.FindLast(rd => rd.Operation.HasFlag(operation));
 
-    public List<Read> FindReadWithOperation(Maintenance operation, int range = 2)
+    public List<Read> FindReadWithOperation(Maintenance operation, int maxSize = 2)
     {
         var listRead = Items.FindAll(rd => rd.Operation.HasFlag(operation));
         if (listRead.Count == 0)
             return listRead;
 
-        return listRead.GetRange(listRead.Count - (range + 1), range);
+        return listRead.Count >= maxSize ? listRead[^maxSize..^1] : listRead[^listRead.Count..^1];
     }
 }
 
