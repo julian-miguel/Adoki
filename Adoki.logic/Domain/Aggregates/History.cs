@@ -53,15 +53,15 @@ public class History
     public Read? FindLastReadWithOperation(Maintenance operation) =>
              Items.FindLast(rd => rd.Operation.HasFlag(operation));
 
-    public List<Read> FindReadWithOperation(Maintenance operation, int maxSize = 2)
+    public History FilterByOperation(Maintenance operation, int maxSize = 2)
     {
         var listRead = Items.FindAll(rd => rd.Operation.HasFlag(operation));
         if (listRead.Count <= maxSize) //Si la lista tiene igual o menos cantidad
-            return listRead;
+            return new History(listRead);
 
         //return listRead.Count > maxSize ? listRead[^maxSize..^1] : listRead[^listRead.Count..^1];
         //Si el código llegó hasta este punto es porque la cantidad excede el límite, entonces:
-        return listRead[^maxSize..];
+        return new History(listRead[^maxSize..]);
     }
 }
 
